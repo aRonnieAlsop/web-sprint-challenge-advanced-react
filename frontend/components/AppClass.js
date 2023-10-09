@@ -30,6 +30,7 @@ export default class AppClass extends React.Component {
 
   reset = () => {
     // Use this helper to reset all states to their initial values.
+
   }
 
   getNextIndex = (direction) => {
