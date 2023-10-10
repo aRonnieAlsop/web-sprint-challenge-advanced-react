@@ -10,6 +10,8 @@ export default class AppClass extends React.Component {
       steps: 0,
       email: ''
     }
+
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   getXY = (index) => {
@@ -63,32 +65,16 @@ export default class AppClass extends React.Component {
     evt.preventDefault()
   const { bSquareIndex, steps, email } = this.state
   const coordinates = this.getXY(bSquareIndex)
+
+  if (!email) {
+    this.setState({ message: 'Ouch: email is required' })
+    return
+  } else {
+    const name = email.split('@')[0]
+    this.setState({ message: `${ name } win #30`})
+    this.setState({ email: '' })
+  }
     
-    const payload = {
-      x: coordinates.x,
-      y: coordinates.y,
-      steps: steps,
-      email: email
-    }
-    fetch('http://localhost:9000/api/result', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('successfully sent request')
-      } else if (response.status === 422) {
-        console.error('invalid payload format')
-      } else {
-        console.log('error occured while sending the request')
-      }
-    })
-    .catch(error => {
-      console.error('error occurred while sending the request:', error)
-    })
   }
   render() {
     const { className } = this.props
@@ -118,13 +104,13 @@ export default class AppClass extends React.Component {
           <button id="down" onClick={()=> this.move('down')}>DOWN</button>
           <button id="reset" onClick={()=> this.reset('reset')}>reset</button>
         </div>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <input 
           id="email" 
           type="email" 
           placeholder="type email"
-          value={email}
-          onChange={(e)=> setEmail(e.target.value)}
+          value={this.state.email}
+          onChange={(e)=> this.setState({ email: e.target.value })}
           ></input>
           <input id="submit" type="submit"></input>
         </form>

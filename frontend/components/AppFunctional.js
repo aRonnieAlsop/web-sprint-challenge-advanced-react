@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 
-
-const initialMessage = ''
-const initialEmail = ''
-const initialSteps = 0
 const initialIndex = 4 
 
 export default function AppFunctional(props) {
@@ -58,33 +54,12 @@ export default function AppFunctional(props) {
   function onSubmit(evt) {
     evt.preventDefault()
     const coordinates = getXY(bSquareIndex)
-    
-    const payload = {
-      x: coordinates.x,
-      y: coordinates.y,
-      steps: steps,
-      email: email
-    }
 
-    fetch('http://localhost:9000/api/result', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('successfully sent request')
-      } else if (response.status === 422) {
-        console.error('invalid payload format')
-      } else {
-        console.log('error occured while sending the request')
-      }
-    })
-    .catch(error => {
-      console.error('error occurred while sending the request:', error)
-    })
+    if (!email) {
+      setMessage('Ouch: email is required')
+      return
+    }
+    
   }
 
   return (
