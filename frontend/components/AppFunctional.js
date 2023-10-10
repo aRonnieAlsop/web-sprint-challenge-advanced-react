@@ -53,35 +53,29 @@ export default function AppFunctional(props) {
 
   function onSubmit(evt) {
     evt.preventDefault()
-
-    const { x, y } = getXY(bSquareIndex)
-
-    if (!email) {
-      setMessage('Ouch: email is required')
-      return
-    }
-
     const payload = {
-      x: x,
-      y: y,
+      x: bSquareIndex % 3 + 1,
+      y: Math.floor(bSquareIndex / 3) + 1,
       steps: steps,
-      email: email
-    }
-
+      email: email,
+    };
+  
     fetch('http://localhost:9000/api/result', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      // Handle the response data here if needed
+      console.log(data);
     })
     .catch(error => {
-      console.error(error)
-    })
+      // Handle errors here
+      console.error('Error:', error);
+    });
     
   }
 

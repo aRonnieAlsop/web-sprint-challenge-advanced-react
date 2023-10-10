@@ -63,17 +63,32 @@ export default class AppClass extends React.Component {
 
   onSubmit = (evt) => {
     evt.preventDefault()
-  const { bSquareIndex, steps, email } = this.state
-  const coordinates = this.getXY(bSquareIndex)
+    const { bSquareIndex, steps, email } = this.state;
+    
+    const payload = {
+      x: bSquareIndex % 3 + 1,
+      y: Math.floor(bSquareIndex / 3) + 1,
+      steps: steps,
+      email: email,
+    };
 
-  if (!email) {
-    this.setState({ message: 'Ouch: email is required' })
-    return
-  } else {
-    const name = email.split('@')[0]
-    this.setState({ message: `${ name } win #30`})
-    this.setState({ email: '' })
-  }
+    fetch('http://localhost:9000/api/result', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data here if needed
+      console.log(data);
+      // Update the state or perform other actions based on the response
+    })
+    .catch(error => {
+      // Handle errors here
+      console.error('Error:', error);
+    });
     
   }
   render() {
