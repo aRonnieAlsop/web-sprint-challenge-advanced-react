@@ -69,6 +69,25 @@ export default class AppClass extends React.Component {
       steps: steps,
       email: email
     }
+    fetch('http://localhost:9000/api/result', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('successfully sent request')
+      } else if (response.status === 422) {
+        console.error('invalid payload format')
+      } else {
+        console.log('error occured while sending the request')
+      }
+    })
+    .catch(error => {
+      console.error('error occurred while sending the request:', error)
+    })
   }
   render() {
     const { className } = this.props
@@ -96,7 +115,7 @@ export default class AppClass extends React.Component {
           <button id="up" onClick={()=> this.move('up')}>UP</button>
           <button id="right" onClick={()=> this.move('right')}>RIGHT</button>
           <button id="down" onClick={()=> this.move('down')}>DOWN</button>
-          <button id="reset" onClick={()=> this.move('reset')}>reset</button>
+          <button id="reset" onClick={()=> this.reset('reset')}>reset</button>
         </div>
         <form>
           <input id="email" type="email" placeholder="type email"></input>

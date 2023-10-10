@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 
-// Suggested initial states
+
 const initialMessage = ''
 const initialEmail = ''
 const initialSteps = 0
-const initialIndex = 4 // the index the "B" is at
+const initialIndex = 4 
 
 export default function AppFunctional(props) {
   const [bSquareIndex, setbSquareIndex] = useState(initialIndex);
   const [message, setMessage] = useState('');
   const [steps, setSteps] = useState(0);
   const [email, setEmail] = useState('');
-  // THE FOLLOWING HELPERS ARE JUST RECOMMENDATIONS.
-  // You can delete them and build your own logic from scratch.
+
   function getNextIndex(direction) {
     switch (direction) {
       case 'left':
