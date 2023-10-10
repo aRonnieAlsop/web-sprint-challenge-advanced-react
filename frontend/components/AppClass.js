@@ -23,7 +23,8 @@ export default class AppClass extends React.Component {
     this.setState({
       steps: 0,
       bSquareIndex: 4,
-      message: ''
+      message: '',
+      email: ''
     })
   }
 
@@ -118,7 +119,13 @@ export default class AppClass extends React.Component {
           <button id="reset" onClick={()=> this.reset('reset')}>reset</button>
         </div>
         <form>
-          <input id="email" type="email" placeholder="type email"></input>
+          <input 
+          id="email" 
+          type="email" 
+          placeholder="type email"
+          value={email}
+          onChange={(e)=> setEmail(e.target.value)}
+          ></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>

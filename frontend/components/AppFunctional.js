@@ -30,19 +30,19 @@ export default function AppFunctional(props) {
   function move(direction) {
     const newIndex = getNextIndex(direction);
     if (newIndex !== bSquareIndex) {
-      setSteps(steps + 1);
-      setbSquareIndex(newIndex);
-      setMessage('');
+      setSteps(steps + 1)
+      setbSquareIndex(newIndex)
+      setMessage('')
     } else {
-      // Handle error message for invalid move
-      setMessage(`You can't go ${direction}`);
+      setMessage(`You can't go ${direction}`)
     }
   }
 
   function reset() {
-    setSteps(0);
-    setbSquareIndex(initialIndex);
-    setMessage('');
+    setSteps(0)
+    setbSquareIndex(initialIndex)
+    setMessage('')
+    setEmail('')
   }
 
   function onChange(evt) {
@@ -113,7 +113,13 @@ export default function AppFunctional(props) {
         <button id="reset" onClick={reset}>reset</button>
       </div>
       <form onSubmit={onSubmit}>
-        <input id="email" type="email" placeholder="type email"></input>
+        <input 
+        id="email" 
+        type="email" 
+        placeholder="type email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        ></input>
         <input id="submit" type="submit"></input>
       </form>
     </div>
