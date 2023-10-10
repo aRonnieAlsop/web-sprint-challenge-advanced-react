@@ -53,12 +53,35 @@ export default function AppFunctional(props) {
 
   function onSubmit(evt) {
     evt.preventDefault()
-    const coordinates = getXY(bSquareIndex)
+
+    const { x, y } = getXY(bSquareIndex)
 
     if (!email) {
       setMessage('Ouch: email is required')
       return
     }
+
+    const payload = {
+      x: x,
+      y: y,
+      steps: steps,
+      email: email
+    }
+
+    fetch('http://localhost:9000/api/result', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
     
   }
 
