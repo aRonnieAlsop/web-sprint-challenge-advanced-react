@@ -1,17 +1,5 @@
 import React from 'react'
 
-// // Suggested initial states
-// const initialMessage = ''
-// const initialEmail = ''
-// const initialSteps = 0
-// const initialIndex = 4 // the index the "B" is at
-
-// const initialState = {
-//   message: initialMessage,
-//   email: initialEmail,
-//   index: initialIndex,
-//   steps: initialSteps,
-// }
 
 export default class AppClass extends React.Component {
   constructor(props) {
@@ -24,21 +12,12 @@ export default class AppClass extends React.Component {
     }
   }
 
-  // THE FOLLOWING HELPERS ARE JUST RECOMMENDATIONS.
-  // You can delete them and build your own logic from scratch.
-
   getXY = (index) => {
     const { bSquareIndex } = this.state
     const y = Math.floor(bSquareIndex / 3) + 1
     const x = bSquareIndex % 3 + 1
     return `(${x}, ${y})`
   }
-
-  // getXYMessage = () => {
-  //   // It it not necessary to have a state to track the "Coordinates (2, 2)" message for the user.
-  //   // You can use the `getXY` helper above to obtain the coordinates, and then `getXYMessage`
-  //   // returns the fully constructed string.
-  // }
 
   reset = () => {
     this.setState({
@@ -79,10 +58,6 @@ export default class AppClass extends React.Component {
     }
   }
 
-  // onChange = (evt) => {
-  //   // You will need this to update the value of the input.
-  // }
-
   onSubmit = (evt) => {
     evt.preventDefault()
   const { bSquareIndex, steps, email } = this.state
@@ -97,6 +72,7 @@ export default class AppClass extends React.Component {
   }
   render() {
     const { className } = this.props
+    const { steps, message } = this.state
     return (
       <div id="wrapper" className={className}>
         <div className="info">
