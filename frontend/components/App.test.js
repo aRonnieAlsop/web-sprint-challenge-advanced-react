@@ -17,6 +17,6 @@ test('typing in the input field changes its value', async () => {
 })
 
 
-// test('sanity', () => {
-//   expect(true).toBe(false)
-// })
+test('sanity', () => {
+  expect(true).toBe(false)
+})
