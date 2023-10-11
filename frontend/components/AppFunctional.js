@@ -71,6 +71,7 @@ export default function AppFunctional(props) {
     .then(data => {
       const { message } = data
       setMessage(message)
+      setEmail('')
     })
     .catch(error => {
       console.error('Error:', error)

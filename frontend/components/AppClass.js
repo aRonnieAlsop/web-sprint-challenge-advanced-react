@@ -81,7 +81,8 @@ export default class AppClass extends React.Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      const { message } = data
+      this.setState({ message: message, email: '' })
     })
     .catch(error => {
       console.error('Error:', error)
