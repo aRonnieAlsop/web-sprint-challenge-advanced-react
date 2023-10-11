@@ -63,14 +63,14 @@ export default class AppClass extends React.Component {
 
   onSubmit = (evt) => {
     evt.preventDefault()
-    const { bSquareIndex, steps, email } = this.state;
+    const { bSquareIndex, steps, email } = this.state
     
     const payload = {
       x: bSquareIndex % 3 + 1,
       y: Math.floor(bSquareIndex / 3) + 1,
       steps: steps,
       email: email,
-    };
+    }
 
     fetch('http://localhost:9000/api/result', {
       method: 'POST',
@@ -81,13 +81,10 @@ export default class AppClass extends React.Component {
     })
     .then(response => response.json())
     .then(data => {
-      // Handle the response data here if needed
-      console.log(data);
-      // Update the state or perform other actions based on the response
+      console.log(data)
     })
     .catch(error => {
-      // Handle errors here
-      console.error('Error:', error);
+      console.error('Error:', error)
     });
     
   }

@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 const initialIndex = 4 
 
 export default function AppFunctional(props) {
-  const [bSquareIndex, setbSquareIndex] = useState(initialIndex);
-  const [message, setMessage] = useState('');
-  const [steps, setSteps] = useState(0);
-  const [email, setEmail] = useState('');
+  const [bSquareIndex, setbSquareIndex] = useState(initialIndex)
+  const [message, setMessage] = useState('')
+  const [steps, setSteps] = useState(0)
+  const [email, setEmail] = useState('')
 
   function getNextIndex(direction) {
     switch (direction) {
@@ -42,7 +42,7 @@ export default function AppFunctional(props) {
   }
 
   function onChange(evt) {
-    setEmail(evt.target.value);
+    setEmail(evt.target.value)
   }
 
   function getXY(index) {
@@ -58,7 +58,7 @@ export default function AppFunctional(props) {
       y: Math.floor(bSquareIndex / 3) + 1,
       steps: steps,
       email: email,
-    };
+    }
   
     fetch('http://localhost:9000/api/result', {
       method: 'POST',
@@ -69,13 +69,11 @@ export default function AppFunctional(props) {
     })
     .then(response => response.json())
     .then(data => {
-      // Handle the response data here if needed
-      console.log(data);
+      console.log(data)
     })
     .catch(error => {
-      // Handle errors here
-      console.error('Error:', error);
-    });
+      console.error('Error:', error)
+    })
     
   }
 
