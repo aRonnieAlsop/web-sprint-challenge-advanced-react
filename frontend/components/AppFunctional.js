@@ -69,7 +69,8 @@ export default function AppFunctional(props) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      const { message } = data
+      setMessage(message)
     })
     .catch(error => {
       console.error('Error:', error)
